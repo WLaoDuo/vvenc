@@ -95,5 +95,7 @@ jobs:
         # 递归上传 build 目录下所有的二进制文件、库文件和可执行文件
         # 你可以根据需要精简路径，例如只上传 build/static/whdd*
         path: |
-          build/*
+          bin/
+          lib/
+          build/
         if-no-files-found: warn
