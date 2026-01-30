@@ -66,7 +66,6 @@ jobs:
     - uses: actions/checkout@v4
     - run: git fetch --prune --unshallow
 
-    # --- 编译部分保持不变 ---
     - name: Ubuntu/Mac OS X/MinGW build
       if: ${{ !contains( matrix.config.generators, 'Visual Studio' ) }}
       run: |
@@ -92,10 +91,7 @@ jobs:
       with:
         # 使用矩阵名称作为产物名，确保唯一性
         name: ${{ matrix.config.name }}-artifacts
-        # 递归上传 build 目录下所有的二进制文件、库文件和可执行文件
-        # 你可以根据需要精简路径，例如只上传 build/static/whdd*
         path: |
           bin/
           lib/
-          build/
         if-no-files-found: warn
