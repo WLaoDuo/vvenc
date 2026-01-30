@@ -17,18 +17,21 @@ jobs:
           - {
               name: "Windows MSVC 64 Bit",
               os: windows-2022,
+              environment_script: "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
               generators: "Visual Studio 17 2022",
               msvc_arch: x64
             }
           - {
               name: "Windows MSVC 32 Bit",
               os: windows-2022,
+              environment_script: "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvars32.bat",
               generators: "Visual Studio 17 2022",
               msvc_arch: Win32
             }
           - {
               name: "Windows MSVC arm64",
               os: windows-2022,
+              environment_script: "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
               generators: "Visual Studio 17 2022",
               msvc_arch: arm64,
             }
@@ -92,11 +95,5 @@ jobs:
         # 递归上传 build 目录下所有的二进制文件、库文件和可执行文件
         # 你可以根据需要精简路径，例如只上传 build/static/whdd*
         path: |
-          build/static/**/*.exe
-          build/static/**/*.a
-          build/static/**/*.lib
-          build/shared/**/*.exe
-          build/shared/**/*.dll
-          build/shared/**/*.so
-          build/shared/**/*.dylib
+          build/*
         if-no-files-found: warn
