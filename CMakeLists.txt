@@ -227,13 +227,12 @@ if( BUILD_SHARED_LIBS )
   set( VVENC_OUTPUT_DIR_POSTFIX shared )
 else()
   set( VVENC_OUTPUT_DIR_POSTFIX static )
-  # 识别是否为 Linux 环境
-  if( LINUX )
+
+  if( CMAKE_SYSTEM_NAME STREQUAL "Linux" ) 
+  # cmake --version >= 3.25     if( LINUX )
     message(STATUS "Linux detected: Applying static linking flags.")  
-    # 同时设置 C 和 C++ 标志，因为 VVenC 主要是 C++ 开发的
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -static -no-pie")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static -no-pie")
-    # 强制链接器使用静态参数
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static -no-pie")
   endif()
 endif()
