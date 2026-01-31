@@ -226,6 +226,8 @@ endif()
 if( BUILD_SHARED_LIBS )
   set( VVENC_OUTPUT_DIR_POSTFIX shared )
 else()
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -static -no-pie")
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static -no-pie")
   set( VVENC_OUTPUT_DIR_POSTFIX static )
 endif()
 
